@@ -28,11 +28,8 @@ export const configureStore = (intialState = {}, initialSagas = {}) => {
     enhancer
   );
 
-  // Add a dictionary to keep track of the registered async reducers
+  // This allows for dynamically adding a reducer when required
   store.asyncReducers = {}
-
-  // Create an inject reducer function
-  // This function adds the async reducer, and creates a new combined reducer
   store.injectReducer = (key: string, asyncReducer: Reducer<any, any>) => {
     store.asyncReducers[key] = asyncReducer
     store.replaceReducer(createReducer(store.asyncReducers))

@@ -12,32 +12,31 @@ import { AnyAction } from "redux"
 
 const store = configureStore({}, coreSaga)
 
+// Rough concept of a module
 export interface Module {
   component: any
   baseKey: string
-  reducer: any
+  reducer?: any
   sagas?: any[]
   actions?: AnyAction[]
 }
 
 function Loading() {
-  return <div>Loading...</div>;
+  // This could be any loader
+  return <div>Loading...</div>
 }
 
-// Need to sort - ensure SSR works
 export const ModuleLoader = (loader) => Loadable({
   loader,
   loading: () => <Loading/>,
-  render: (mob: { default: Module }) => {
-    const {sagas,component: Component, reducer, baseKey, actions} = mob.default
-    // See if we have dModule - if so get the reducer and set it up
-    // Could this be some bootstrap fn?
-    // We could then run it and it fires all necessary sagas
-    // creates state etc
-    store.injectReducer(baseKey, reducer)
+  render: ({default: {sagas,component: Component, reducer, baseKey, actions}}: { default: Module }) => {
+    // This uses the modified store to allow us to add a reducer
+    reducer && store.injectReducer(baseKey, reducer)
+
+    // We can now execute our sagas
     sagas && sagas.map(saga => (store.runSaga(saga)))
 
-    // Need to dispatch the actions
+    // And execute any initial actions that are required
     actions && actions.map(action => store.dispatch(action))
 
     return <Component />
