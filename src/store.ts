@@ -1,10 +1,10 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
+import { AnyAction, applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
 import { rootReducer } from './reducer'
 import { Reducer } from 'react'
+import { CustomStore, DynamicStore } from "./index"
 
-export let store: any
 
 function createReducer(asyncReducers: Reducer<any, any> = (s) => s) {
   return combineReducers({
@@ -22,25 +22,42 @@ export const configureStore = (intialState = {}, initialSagas = {}) => {
     applyMiddleware(sagaMiddleware),
   );
 
-  store = createStore(
+  const store: any = createStore(
     createReducer(),
     intialState,
     enhancer
   );
 
-  // This allows for dynamically adding a reducer when required
-  store.asyncReducers = {}
-  store.injectReducer = (key: string, asyncReducer: Reducer<any, any>) => {
-    store.asyncReducers[key] = asyncReducer
-    store.replaceReducer(createReducer(store.asyncReducers))
-  }
-
   // Need to run the sagas to create watchers
   store.runSaga = (saga: any) => sagaMiddleware.run(saga, store)
 
-  // Get the 'normal' sagas to run
-  Object.keys(initialSagas).map((saga) => store.runSaga(initialSagas[saga]))
+  // Got to be a neater way to do this
+  const dynamicStore = makeStoreDynamic(store)
 
-  return store
+  // Get the 'normal' sagas to run
+  Object.keys(initialSagas).map((saga) => dynamicStore.runSaga(initialSagas[saga]))
+
+  return dynamicStore
 }
 
+const makeStoreDynamic = (store: CustomStore) => {
+  const newStore: DynamicStore & CustomStore = {
+    ...store,
+    asyncReducers: {},
+    asyncSagas: {},
+    injectReducer: (key: string, asyncReducer: Reducer<any, any>) => {
+      if (newStore.asyncReducers[key]) return
+      newStore.asyncReducers[key] = asyncReducer
+      newStore.replaceReducer(createReducer(newStore.asyncReducers))
+    },
+    injectSagas: (key: string, asyncSagas: any) => {
+      if (newStore.asyncSagas[key]) return
+      newStore.asyncSagas[key] = true
+      asyncSagas.map(newStore.runSaga)
+    },
+    injectActions: (actions: AnyAction[]) =>
+      actions.map(action => store.dispatch(action))
+  }
+
+  return newStore
+}

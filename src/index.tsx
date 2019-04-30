@@ -8,17 +8,12 @@ import { Provider } from 'react-redux'
 import { configureStore } from './store';
 import { coreSaga } from "./sagas"
 import Loadable from "react-loadable"
-import { AnyAction } from "redux"
+import { AnyAction, Reducer, Store } from "redux"
 
 const store = configureStore({}, coreSaga)
 
-// Rough concept of a module
 export interface Module {
-  component: any
-  baseKey: string
-  reducer?: any
-  sagas?: any[]
-  actions?: AnyAction[]
+  init(storeConnector: DynamicStoreInterface): React.ComponentType
 }
 
 function Loading() {
@@ -26,18 +21,38 @@ function Loading() {
   return <div>Loading...</div>
 }
 
+export interface DynamicStoreInterface {
+  injectSagas(key: string, sagas: any): void
+  injectActions(actions: AnyAction[]): void
+  injectReducer(key: string, reducer: Reducer<any, any>): void
+}
+
+export interface DynamicStore {
+  asyncReducers: any
+  asyncSagas: any
+  injectSagas(key: string, sagas: any): void
+  injectActions(actions: AnyAction[]): void
+  injectReducer(key: string, reducer: Reducer<any, any>): void
+}
+
+export type CustomStore = Store & DynamicStore & {
+  runSaga(saga: any): void
+
+}
+
+const storeConnector = (store: CustomStore): DynamicStoreInterface => ({
+  injectSagas: store.injectSagas,
+  injectActions: store.injectActions,
+  injectReducer: store.injectReducer
+})
+
+const connector = storeConnector(store)
+
 export const ModuleLoader = (loader) => Loadable({
   loader,
   loading: () => <Loading/>,
-  render: ({default: {sagas,component: Component, reducer, baseKey, actions}}: { default: Module }) => {
-    // This uses the modified store to allow us to add a reducer
-    reducer && store.injectReducer(baseKey, reducer)
-
-    // We can now execute our sagas
-    sagas && sagas.map(saga => (store.runSaga(saga)))
-
-    // And execute any initial actions that are required
-    actions && actions.map(action => store.dispatch(action))
+  render: ({default: {init}}: { default: Module }) => {
+    const Component = init(connector)
 
     return <Component />
   }

@@ -6,10 +6,12 @@ interface ActionWithPayload<T> extends Action {
 
 export interface LazyState {
   lazy: number
+  init: number
 }
 
 const initialState = {
-  lazy: 42
+  lazy: 42,
+  init: 0
 }
 
 export const reducer = (state: LazyState = initialState, action: ActionWithPayload<any>) => {
@@ -18,6 +20,12 @@ export const reducer = (state: LazyState = initialState, action: ActionWithPaylo
       return {
         ...state,
         lazy: state.lazy + 1
+      }
+
+    case 'INIT':
+      return {
+        ...state,
+        init: state.init + 1
       }
     default:
       return state
