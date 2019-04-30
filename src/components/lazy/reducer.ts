@@ -4,18 +4,20 @@ interface ActionWithPayload<T> extends Action {
   payload: T
 }
 
-interface ApplicationState {
+export interface LazyState {
+  lazy: number
 }
 
 const initialState = {
   lazy: 42
 }
 
-export const reducer = (state: ApplicationState = initialState, action: ActionWithPayload<any>) => {
+export const reducer = (state: LazyState = initialState, action: ActionWithPayload<any>) => {
   switch (action.type) {
-    case 'SOME_ACTION':
+    case 'LAZY':
       return {
-        result: action.payload
+        ...state,
+        // lazy: state.lazy + 1
       }
     default:
       return state

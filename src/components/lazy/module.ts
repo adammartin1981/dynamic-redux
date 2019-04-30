@@ -1,19 +1,19 @@
-import { Lazy } from './lazy'
+import { ConnectedLazy } from './lazy'
 import { reducer } from './reducer'
-import { Module } from '../../App'
+import { sagas as lazySaga } from "./saga"
+import { Module } from "../../index"
 
-export let baseKey: string = 'ORIGINAL_KEY'
+export let baseKey: string = 'lazy'
 
 // Cannot use the reserved word module
 // export const module: Module = {
 const m: Module = {
-  component: Lazy,
+  component: ConnectedLazy,
   reducer,
   baseKey,
-  changeKey: (newValue: string) => {
-    console.log('Update the module')
-    baseKey = newValue
-  }
+  sagas: [
+    lazySaga
+  ]
 }
 
 export default m

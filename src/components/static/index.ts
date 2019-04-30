@@ -1,2 +1,4 @@
 export { reducer } from './reducer'
-export { Static } from './static'
+export { ConnectedStatic } from './static'
+
+export { sagas } from './saga'

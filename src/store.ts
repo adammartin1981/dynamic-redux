@@ -2,21 +2,20 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
 import { rootReducer } from './reducer'
-import { takeLatest } from '@redux-saga/core/effects';
+// import { takeLatest } from '@redux-saga/core/effects';
 import { Reducer } from 'react'
 
 export let store: any
 
-
-const doSomething = () => {
-  console.log('SOME_ACTION called and invoked from Saga')
-}
+// const doSomething = () => {
+//   console.log('SOME_ACTION called and invoked from Saga')
+// }
 
 // Currently sagas aren't being used - but they need to be
 // and we need to make them listened to
-function* mySaga() {
-  yield takeLatest('SOME_ACTION', doSomething);
-}
+// function* mySaga() {
+//   yield takeLatest('SOME_ACTION', doSomething);
+// }
 
 function createReducer(asyncReducers: Reducer<any, any> = (s) => s) {
   return combineReducers({
@@ -40,7 +39,7 @@ export const configureStore = (intialState = {}) => {
     enhancer
   );
 
-  sagaMiddleware.run(mySaga)
+  // sagaMiddleware.run(mySaga)
 
   // Add a dictionary to keep track of the registered async reducers
   store.asyncReducers = {}
@@ -48,17 +47,14 @@ export const configureStore = (intialState = {}) => {
   // Create an inject reducer function
   // This function adds the async reducer, and creates a new combined reducer
   store.injectReducer = (key: string, asyncReducer: Reducer<any, any>) => {
-    let useKey = key
-
-    if (key === 'ORIGINAL_KEY') {
-      useKey = 'NEW_VALUE'
-    }
-
-    store.asyncReducers[useKey] = asyncReducer
+    store.asyncReducers[key] = asyncReducer
     store.replaceReducer(createReducer(store.asyncReducers))
-
-    return useKey
   }
+
+  // ^^ See if we can init the module another way
+
+  // Need to run the sagas to create watchers
+  store.runSaga = (saga: any) => sagaMiddleware.run(saga, store)
 
   return store
 }
