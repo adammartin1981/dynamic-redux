@@ -8,37 +8,37 @@ import { Provider } from 'react-redux'
 import { configureStore } from './store';
 import { coreSaga } from "./sagas"
 import Loadable from "react-loadable"
+import { AnyAction } from "redux"
 
-const store = configureStore()
+const store = configureStore({}, coreSaga)
 
 export interface Module {
   component: any
   baseKey: string
   reducer: any
   sagas?: any[]
+  actions?: AnyAction[]
 }
-
-Object.keys(coreSaga).map((saga) => store.runSaga(coreSaga[saga]))
 
 function Loading() {
   return <div>Loading...</div>;
 }
 
 // Need to sort - ensure SSR works
-// export const LoadableLazy = ({ foo }: {foo: s}) => Loadable({
-export const LoadableLazy = (loader) => Loadable({
+export const ModuleLoader = (loader) => Loadable({
   loader,
-  loading: (x) => {
-    console.log('LOADING', x)
-    return <Loading/>
-  }, // Use spinner
-  render: ({default: {component: Component, reducer, baseKey, sagas}}) => {
+  loading: () => <Loading/>,
+  render: (mob: { default: Module }) => {
+    const {sagas,component: Component, reducer, baseKey, actions} = mob.default
     // See if we have dModule - if so get the reducer and set it up
     // Could this be some bootstrap fn?
     // We could then run it and it fires all necessary sagas
     // creates state etc
     store.injectReducer(baseKey, reducer)
     sagas && sagas.map(saga => (store.runSaga(saga)))
+
+    // Need to dispatch the actions
+    actions && actions.map(action => store.dispatch(action))
 
     return <Component />
   }

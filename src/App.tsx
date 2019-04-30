@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { ConnectedStatic } from './components/static'
-import { LoadableLazy } from "./index"
+import { ModuleLoader } from "./index"
 
 export const App: React.FC = () => {
-  const LLB = LoadableLazy(() => import('./components/lazy/module'))
-
-  console.log('LLB', LLB)
+  const LazyLoadComponent = ModuleLoader(() => import(/* webpackChunkName: "Lazy" */'./components/lazy/module'))
 
   return (
     <div>
       <ConnectedStatic />
-      <LLB />
+      <LazyLoadComponent />
     </div>
   )
 }

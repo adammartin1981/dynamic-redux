@@ -3,7 +3,7 @@ import { reducer } from './reducer'
 import { sagas as lazySaga } from "./saga"
 import { Module } from "../../index"
 
-export let baseKey: string = 'lazy'
+export const baseKey = 'lazy'
 
 // Cannot use the reserved word module
 // export const module: Module = {
@@ -13,6 +13,9 @@ const m: Module = {
   baseKey,
   sagas: [
     lazySaga
+  ],
+  actions: [
+    { type: 'INIT', payload: 'boo' }
   ]
 }
 

@@ -1,32 +1,27 @@
 import * as React from 'react'
 import { baseKey } from './module'
 import { connect } from "react-redux"
-// import { LazyState } from "./reducer"
+import { LazyState } from "./reducer"
 
-// Need to force a re render
-export const Lazy = (p: any, s: any) => {
-    console.log(p)
-    console.log(s)
-    return <div>
-        <h1>Lazy: {baseKey} </h1>
-        <button onClick={() => p.doSomething()}>Do Something</button>
-    </div>
-}
+export const Lazy = (p: any) =>
+  <div>
+    <h1>Lazy: {baseKey} : { p.lazy }</h1>
+    <button onClick={() => p.doSomething()}>Do Something</button>
+  </div>
 
 
 const mapDispatch = (dispatch) => ({
     doSomething: () => dispatch({type: 'LAZY', payload: 'FOO'})
 })
 
-//
-// const mapState = (state: LazyState) => {
-//   console.log('STATE', state)
-//   return {}
-// }
+interface RootLazyState {
+  [baseKey]: LazyState
+}
 
-export const ConnectedLazy = connect(null, mapDispatch)(Lazy)
+const root = (state: RootLazyState): LazyState => state[baseKey]
 
+const mapState = (state) => {
+  return { lazy: root(state).lazy }
+}
 
-
-
-
+export const ConnectedLazy = connect(mapState, mapDispatch)(Lazy)

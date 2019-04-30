@@ -17,7 +17,7 @@ export const reducer = (state: LazyState = initialState, action: ActionWithPaylo
     case 'LAZY':
       return {
         ...state,
-        // lazy: state.lazy + 1
+        lazy: state.lazy + 1
       }
     default:
       return state
