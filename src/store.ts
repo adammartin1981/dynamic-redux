@@ -3,8 +3,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import { rootReducer } from './reducer'
 import { Reducer } from 'react'
-import { CustomStore, DynamicStore } from "./index"
-
+import { CustomStore, DynamicStore } from "./module"
 
 function createReducer(asyncReducers: Reducer<any, any> = (s) => s) {
   return combineReducers({
@@ -16,7 +15,11 @@ function createReducer(asyncReducers: Reducer<any, any> = (s) => s) {
 export const configureStore = (intialState = {}, initialSagas = {}) => {
   const sagaMiddleware = createSagaMiddleware()
 
-  const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const isServer = typeof window === 'undefined'
+
+  const composeEnhancers = isServer ? compose : (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+
+  // const composeEnhancers = typeof window !== 'undefined' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const enhancer = composeEnhancers(
     applyMiddleware(sagaMiddleware),

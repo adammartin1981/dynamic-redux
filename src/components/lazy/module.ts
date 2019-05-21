@@ -1,7 +1,7 @@
 import { ConnectedLazy } from './lazy'
 import { reducer } from './reducer'
 import { sagas as lazySaga } from "./saga"
-import { DynamicStore, Module } from "../../index"
+import { DynamicStore, Module } from "../../module"
 
 export const baseKey = 'lazy'
 
