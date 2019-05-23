@@ -80,7 +80,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "server": "yarn build && ts-node server/bootstrap.ts"
   },
   "eslintConfig": {
     "extends": "react-app"

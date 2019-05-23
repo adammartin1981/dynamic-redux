@@ -1,7 +1,11 @@
 // This is to read in TSX/JSX
 
-import ignoreStyles from 'ignore-styles'
+import {} from 'react'
 
+process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'development';
+
+// Babel setup
 require('@babel/register')({
   ignore: [/(node_modules)/],
   extensions: ['.ts', '.js', '.tsx', '.jsx'],
@@ -13,9 +17,6 @@ require('@babel/register')({
   plugins: [
     '@babel/plugin-syntax-dynamic-import',
     'react-loadable/babel',
-    // new ReactLoadablePlugin({
-    //   filename: './dist/react-loadable.json',
-    // }),
   ]
 })
 

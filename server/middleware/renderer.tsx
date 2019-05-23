@@ -5,6 +5,8 @@ import ReactDOMServer from 'react-dom/server'
 import { App } from '../../src/App'
 
 import { store } from '../../src/module'
+import stats from '../../build/react-loadable.json';
+
 import * as Loadable from 'react-loadable'
 import { Provider } from "react-redux"
 import { getBundles } from "react-loadable/webpack"
@@ -13,7 +15,6 @@ const path = require('path')
 const fs = require('fs')
 
 export default (req, res, next) => {
-  console.log('HERE')
   const filePath = path.resolve(__dirname, '..', '..', 'build', 'index.html')
 
   fs.readFile(filePath, 'utf8', (err, htmlData) => {
@@ -23,24 +24,13 @@ export default (req, res, next) => {
     }
 
     const state = store.getState()
-
-    //
-    // const html = ReactDOMServer.renderToString(
-    //   <Provider store={store}>
-    //     <App />
-    //   </Provider>
-    // )
-
-
     const modulesArray = [];
 
     // render the app as a string
     const html = ReactDOMServer.renderToString(
       <Loadable.Capture report={m => {
         console.log('M', m)
-        console.log('ARRAY', modulesArray)
         modulesArray.push(m as never)
-        // modulesArray.push(m)
       }}>
         <Provider store={store}>
           <App />
@@ -49,9 +39,19 @@ export default (req, res, next) => {
     );
 
     console.log('MODULES', modulesArray);
-    // const html = ReactDOMServer.renderToString(<p>Foo</p>)
 
-    // let bundles = getBundles(stats, modulesArray)
+
+    let bundles = getBundles(stats as any, modulesArray);
+    console.log('BUNDLES', bundles)
+
+    const bundleScripts = bundles.map(bundle => {
+      console.log('BUNDLE', bundle)
+      if (!bundle) return ''
+      return `<script src="/build/static/js/${bundle.file}"></script>`
+    }).join('\n')
+
+    console.log('BUNDLE SCRIPTS', bundleScripts)
+
 
     return res.send(
       htmlData.replace(
@@ -64,7 +64,9 @@ export default (req, res, next) => {
              /</g,
              '\\\u003c'
            )}
-         </script>`
+         </script>
+         ${bundleScripts}
+         `
       )
     )
   })

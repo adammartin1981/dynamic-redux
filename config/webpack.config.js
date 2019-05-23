@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const ReactLoadablePlugin = require("react-loadable/webpack").ReactLoadablePlugin;
 const isWsl = require('is-wsl');
 const path = require('path');
 const webpack = require('webpack');
@@ -29,7 +30,7 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const postcssNormalize = require('postcss-normalize');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const shouldUseSourceMap = false; //process.env.GENERATE_SOURCEMAP !== 'false';
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
 const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
@@ -476,6 +477,11 @@ module.exports = function(webpackEnv) {
       ],
     },
     plugins: [
+      new ReactLoadablePlugin({
+        filename: './build/react-loadable.json'
+      }),
+
+
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(

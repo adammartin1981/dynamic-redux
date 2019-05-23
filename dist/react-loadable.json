@@ -1,0 +1,274 @@
+{
+  "undefined": [
+    {
+      "id": 22,
+      "name": null,
+      "file": "static/js/main.b5a724eb.chunk.js",
+      "publicPath": "/static/js/main.b5a724eb.chunk.js"
+    }
+  ],
+  "/Users/martia45/Documents/Projects/dynamic-redux/src/index.tsx": [
+    {
+      "id": 32,
+      "name": "./src/index.tsx",
+      "file": "static/js/main.b5a724eb.chunk.js",
+      "publicPath": "/static/js/main.b5a724eb.chunk.js"
+    }
+  ],
+  "./chunk-e922c950.js": [
+    {
+      "id": 0,
+      "name": "./node_modules/@redux-saga/core/dist/chunk-e922c950.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "@redux-saga/is": [
+    {
+      "id": 1,
+      "name": "./node_modules/@redux-saga/is/dist/redux-saga-is.esm.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "react": [
+    {
+      "id": 2,
+      "name": "./node_modules/react/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "@redux-saga/symbols": [
+    {
+      "id": 3,
+      "name": "./node_modules/@redux-saga/symbols/dist/redux-saga-symbols.esm.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "redux": [
+    {
+      "id": 4,
+      "name": "./node_modules/redux/es/redux.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "prop-types": [
+    {
+      "id": 5,
+      "name": "./node_modules/prop-types/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "@babel/runtime/helpers/esm/extends": [
+    {
+      "id": 6,
+      "name": "./node_modules/@babel/runtime/helpers/esm/extends.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "invariant": [
+    {
+      "id": 7,
+      "name": "./node_modules/invariant/browser.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "react-dom": [
+    {
+      "id": 8,
+      "name": "./node_modules/react-dom/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "@redux-saga/delay-p": [
+    {
+      "id": 9,
+      "name": "./node_modules/@redux-saga/delay-p/dist/redux-saga-delay-p.esm.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "react-redux": [
+    {
+      "id": 10,
+      "name": "./node_modules/react-redux/es/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "react-loadable": [
+    {
+      "id": 11,
+      "name": "./node_modules/react-loadable/lib/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "react-is": [
+    {
+      "id": 12,
+      "name": "./node_modules/react-is/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "/Users/martia45/Documents/Projects/dynamic-redux/node_modules/@babel/runtime/regenerator": [
+    {
+      "id": 13,
+      "name": "./node_modules/@babel/runtime/regenerator/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "/Users/martia45/Documents/Projects/dynamic-redux/node_modules/@babel/runtime/helpers/esm/objectSpread": [
+    {
+      "id": 14,
+      "name": "./node_modules/@babel/runtime/helpers/esm/objectSpread.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "hoist-non-react-statics": [
+    {
+      "id": 15,
+      "name": "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "symbol-observable": [
+    {
+      "id": 16,
+      "name": "./node_modules/symbol-observable/es/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "object-assign": [
+    {
+      "id": 17,
+      "name": "./node_modules/object-assign/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./../../webpack/buildin/global.js": [
+    {
+      "id": 18,
+      "name": "./node_modules/webpack/buildin/global.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "@redux-saga/core/effects": [
+    {
+      "id": 19,
+      "name": "./node_modules/@redux-saga/core/dist/redux-saga-effects.esm.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./ponyfill.js": [
+    {
+      "id": 20,
+      "name": "./node_modules/symbol-observable/es/ponyfill.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "redux-saga": [
+    {
+      "id": 21,
+      "name": "./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./cjs/react.production.min.js": [
+    {
+      "id": 23,
+      "name": "./node_modules/react/cjs/react.production.min.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./cjs/react-dom.production.min.js": [
+    {
+      "id": 24,
+      "name": "./node_modules/react-dom/cjs/react-dom.production.min.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "scheduler": [
+    {
+      "id": 25,
+      "name": "./node_modules/scheduler/index.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./cjs/scheduler.production.min.js": [
+    {
+      "id": 26,
+      "name": "./node_modules/scheduler/cjs/scheduler.production.min.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./factoryWithThrowingShims": [
+    {
+      "id": 27,
+      "name": "./node_modules/prop-types/factoryWithThrowingShims.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./lib/ReactPropTypesSecret": [
+    {
+      "id": 28,
+      "name": "./node_modules/prop-types/lib/ReactPropTypesSecret.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./cjs/react-is.production.min.js": [
+    {
+      "id": 29,
+      "name": "./node_modules/react-is/cjs/react-is.production.min.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./../../webpack/buildin/harmony-module.js": [
+    {
+      "id": 30,
+      "name": "./node_modules/webpack/buildin/harmony-module.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "regenerator-runtime": [
+    {
+      "id": 31,
+      "name": "./node_modules/regenerator-runtime/runtime.js",
+      "file": "static/js/2.ef45fa89.chunk.js",
+      "publicPath": "/static/js/2.ef45fa89.chunk.js"
+    }
+  ],
+  "./components/lazy/module": [
+    {
+      "id": 33,
+      "name": "./src/components/lazy/module.ts",
+      "file": "static/js/3.c71b4c90.chunk.js",
+      "publicPath": "/static/js/3.c71b4c90.chunk.js"
+    }
+  ]
+}

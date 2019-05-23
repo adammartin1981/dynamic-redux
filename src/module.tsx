@@ -52,13 +52,11 @@ export const ModuleLoader = (loader) => Loadable({
   }
 });
 
-export const ModuleLoader2 = (moduleName, modulePath) => {
-  // const localLoader = () => import(/* webpackChunkName: "[request]" */ modulePath+`${moduleName}`)
-  const localLoader = () => import(modulePath)
+// This one is the only one that works for the plugin...
+export const ModuleLoader2 = () => {
   return Loadable({
-    loader: localLoader,
+    loader: () => import('./components/lazy/module'),
     loading: () => <Loading />,
-    modules: [moduleName],
     render: ({default: {init}}: { default: Module }) => {
       const Component = init(connector)
 
