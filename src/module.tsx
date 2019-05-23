@@ -42,6 +42,7 @@ const storeConnector = (store: CustomStore): DynamicStoreInterface => ({
 
 const connector = storeConnector(store)
 
+// This one doesn't work with the plugin, but does client side.
 export const ModuleLoader = (loader) => Loadable({
   loader,
   loading: () => <Loading/>,
@@ -52,12 +53,13 @@ export const ModuleLoader = (loader) => Loadable({
   }
 });
 
-// This one is the only one that works for the plugin...
+// This one works with the plugin and client side too
 export const ModuleLoader2 = () => {
   return Loadable({
     loader: () => import('./components/lazy/module'),
     loading: () => <Loading />,
     render: ({default: {init}}: { default: Module }) => {
+      console.log('TRYING TO RENDER')
       const Component = init(connector)
 
       return <Component />
@@ -65,12 +67,14 @@ export const ModuleLoader2 = () => {
   })
 }
 
+// This one works with the plugin but not client side
 export const ModuleLoader3 = (modulePath) => Loadable({
   loader: () => import(modulePath),
   loading: () => <Loading />,
   render: ({default: {init}}: { default: Module }) => {
+    console.log('TRYING TO RENDER')
     const Component = init(connector)
-
+    console.log('GOT COMPONENT')
     return <Component />
   }
 })

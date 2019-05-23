@@ -12,6 +12,7 @@ Loadable.preloadAll().then(() => {
   app.listen(PORT, () =>  console.log('LISTENING'))
 })
 
+app.use('/static', express.static('build/static'))
 app.use('/', serverRenderer)
 
 

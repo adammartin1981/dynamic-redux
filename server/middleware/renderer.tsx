@@ -47,11 +47,10 @@ export default (req, res, next) => {
     const bundleScripts = bundles.map(bundle => {
       console.log('BUNDLE', bundle)
       if (!bundle) return ''
-      return `<script src="/build/static/js/${bundle.file}"></script>`
+      return `<script src="${bundle.file}"></script>`
     }).join('\n')
 
     console.log('BUNDLE SCRIPTS', bundleScripts)
-
 
     return res.send(
       htmlData.replace(
