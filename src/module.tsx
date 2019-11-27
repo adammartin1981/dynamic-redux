@@ -50,30 +50,4 @@ export const ModuleLoader = (loader) => Loadable({
 
     return <Component />
   }
-});
-
-export const ModuleLoader2 = (moduleName, modulePath) => {
-  // const localLoader = () => import(/* webpackChunkName: "[request]" */ modulePath+`${moduleName}`)
-  const localLoader = () => import(modulePath)
-  return Loadable({
-    loader: localLoader,
-    loading: () => <Loading />,
-    modules: [moduleName],
-    render: ({default: {init}}: { default: Module }) => {
-      const Component = init(connector)
-
-      return <Component />
-    }
-  })
-}
-
-export const ModuleLoader3 = (modulePath) => Loadable({
-  loader: () => import(modulePath),
-  loading: () => <Loading />,
-  render: ({default: {init}}: { default: Module }) => {
-    const Component = init(connector)
-
-    return <Component />
-  }
 })
-
